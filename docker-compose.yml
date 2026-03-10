@@ -2,7 +2,6 @@ services:
   document-privacy:
     build: .
     volumes:
-      - .:/app
       - /app/temp
     environment:
       - FLASK_ENV=development
