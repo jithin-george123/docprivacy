@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Masking Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Document Privacy Masking</h1>
+            <p>Sanitize sensitive documents locally</p>
+        </header>
+
+        <main>
+            <section id="upload-section" class="card">
+                <label for="file-upload" class="upload-btn">
+                    <span>Upload JPG, PNG, or PDF</span>
+                    <input type="file" id="file-upload" accept=".jpg,.jpeg,.png,.pdf" hidden>
+                </label>
+                <div id="file-info" class="hidden">
+                    <span id="filename-display"></span>
+                    <button id="reset-btn" class="secondary">Change File</button>
+                </div>
+            </section>
+
+            <section id="editor-section" class="card hidden">
+                <div class="toolbar">
+                    <button id="manual-mask-btn" class="active">✏️ Manual Redact</button>
+                    <button id="detect-btn" class="primary">🔍 Auto-detect PII</button>
+                    <button id="mask-all-btn" class="secondary">⬛ Mask All</button>
+                    <button id="unmask-all-btn" class="secondary">⬜ Unmask All</button>
+                    <button id="undo-btn">↩️ Undo</button>
+                    <button id="clear-btn" class="danger">🗑️ Clear All</button>
+                    <div class="spacer"></div>
+                    <button id="compare-btn">👁️ Compare</button>
+                    <button id="download-btn" class="success">⬇️ Download PDF</button>
+                </div>
+
+                <div id="page-controls" class="hidden">
+                    <button id="prev-page">Previous</button>
+                    <span id="page-indicator">Page 1 of 1</span>
+                    <button id="next-page">Next</button>
+                </div>
+
+                <div class="workspace-layout">
+                    <div class="canvas-container">
+                        <div class="viewport" id="editor-container">
+                            <!-- Canvas will be injected here -->
+                        </div>
+                    </div>
+
+                    <div id="detection-suggestions" class="hidden">
+                        <h3>Suggested Detections</h3>
+                        <div id="suggestions-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Privacy Notice: All processing happens on your local server. No data is stored permanently.</p>
+        </footer>
+    </div>
+
+    <!-- Comparison Modal -->
+    <div id="compare-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Comparison (Original vs Masked)</h2>
+            <div class="compare-row">
+                <div class="compare-col">
+                    <h3>Original</h3>
+                    <div id="orig-preview"></div>
+                </div>
+                <div class="compare-col">
+                    <h3>Masked Preview</h3>
+                    <div id="masked-preview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/canvas_handler.js"></script>
+    <script src="js/api_handler.js"></script>
+    <script src="js/ui_handler.js"></script>
+</body>
+
+</html>
