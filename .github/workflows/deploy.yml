@@ -59,7 +59,7 @@ jobs:
 
             echo "Pulling latest docker image..."
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            sudo docker-compose pull
+            sudo docker compose pull
             
             echo "Starting containers..."
-            sudo docker-compose up -d
+            sudo docker compose up -d
